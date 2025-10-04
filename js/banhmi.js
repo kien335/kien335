@@ -9,10 +9,17 @@ let tieude = document.getElementById("tieude");
 tieude.addEventListener("mouseenter", () => tieude.classList.add("blink"));
 tieude.addEventListener("mouseleave", () => tieude.classList.remove("blink"));
 
-// Cuộn mượt khi bấm "Xem thêm"
-document.getElementById("xemThem").addEventListener("click", function(e) {
-    e.preventDefault();
-    document.getElementById("gioithieu").scrollIntoView({ behavior: "smooth" });
+// Nút "Xem thêm" → phân biệt link thật và link #
+let xemThemBtn = document.getElementById("xemThem");
+xemThemBtn.addEventListener("click", function(e) {
+    let link = this.getAttribute("href");
+
+    if (link === "#") {
+        // Nếu href="#" thì chỉ cuộn mượt xuống giới thiệu
+        e.preventDefault();
+        document.getElementById("gioithieu").scrollIntoView({ behavior: "smooth" });
+    }
+    // Nếu href là link thật (http/https) thì để trình duyệt mở bình thường
 });
 
 // Hiệu ứng card rung nhẹ khi click
